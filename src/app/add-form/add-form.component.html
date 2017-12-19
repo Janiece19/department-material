@@ -1,0 +1,16 @@
+<h1 mat-dialog-title  *ngIf="(data.id)==0">Add Department</h1>
+<h1 mat-dialog-title  *ngIf="(data.id)>0">Edit Department</h1>
+<div mat-dialog-content>
+  <p>Department Name</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  
+  <button *ngIf="(data.id)==0" mat-raised-button color="primary" [mat-dialog-close]="data.name">Save</button>
+
+   <button  *ngIf="(data.id)>0" mat-raised-button color="primary"  [mat-dialog-close]="data">Update</button>
+
+  <button mat-raised-button color="warn" (click)="onNoClick()" >Cancel</button>
+</div>

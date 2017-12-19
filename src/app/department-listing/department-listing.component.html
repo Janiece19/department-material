@@ -1,0 +1,32 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" >
+<!--style="background-color:#ffd200"-->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+      <mat-cell *matCellDef="let element">  <button mat-raised-button color="primary" matTooltip="Edit!" (click)="editRow(element)">Edit</button>
+           <button mat-raised-button color="warn" (click)="deleteRow(element.id)">Delete</button></mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<br>
+ <button mat-raised-button color="primary" (click)="showAddForm()">Add</button>
