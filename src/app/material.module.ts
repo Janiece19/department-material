@@ -13,13 +13,18 @@ import {
   MatSelectModule,
   MatCheckboxModule,
   MatSlideToggleModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule,
+  MatPaginatorModule,
+  MatSortModule
   
+ 
 
 
 } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTableModule } from '@angular/material/table';
+// import { MatPaginator } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 
 
@@ -40,8 +45,12 @@ import {MatButtonModule} from '@angular/material/button';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatTooltipModule
-
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatGridListModule,
+    MatSortModule
+    
+   
 
 
   ],
@@ -60,8 +69,13 @@ import {MatButtonModule} from '@angular/material/button';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatTooltipModule
-
+    MatTooltipModule,
+    MatGridListModule,
+      MatPaginatorModule,
+      MatSortModule
+   
+    
+    
 
   ]
 })

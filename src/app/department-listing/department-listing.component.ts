@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormService } from "../shared/form-service";
 import { MatTableDataSource } from "@angular/material/table";
 import { Department } from "../shared/form-model";
-import { MatDialog, MatDialogRef } from "@angular/material";
+import { MatDialog, MatDialogRef, MatPaginator, MatSort } from "@angular/material";
 import { AddFormComponent } from "../add-form/add-form.component";
 
 @Component({
@@ -10,7 +10,9 @@ import { AddFormComponent } from "../add-form/add-form.component";
   templateUrl: './department-listing.component.html',
   styleUrls: ['./department-listing.component.css']
 })
-export class DepartmentListingComponent implements OnInit {
+export class DepartmentListingComponent implements OnInit,AfterViewInit {
+   @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
   departments:Department[]
    dataSource;
    deptId:number;
@@ -20,6 +22,9 @@ export class DepartmentListingComponent implements OnInit {
 
   ngOnInit() {
     this.loadDepartments();
+  }
+  ngAfterViewInit() {
+    // this.dataSource.paginator = this.paginator;
   }
 
 
@@ -31,9 +36,17 @@ displayedColumns = ['id','name','action'];
     this._formService.getDepartment().subscribe(
       (data) => {this.dataSource = new MatTableDataSource<Department>(data)
       this.departments=data
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     console.log(this.departments)},
       (error) => console.error(error)
     );
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
 
